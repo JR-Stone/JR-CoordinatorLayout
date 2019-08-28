@@ -9,4 +9,4 @@
 /build
 /captures
 .externalNativeBuild
-raw
+/src/main/res/raw
