@@ -12,13 +12,15 @@ CoordinatorLayout + AppBarLayout + NestedScrollView 组合使用实现地图背�
 
 ## [English](https://github.com/scwang90/SmartRefreshLayout/blob/master/README_EN.md) | 中文
 
-SmartRefreshLayout以打造一个强大，稳定，成熟的下拉刷新框架为目标，并集成各种的炫酷、多样、实用、美观的Header和Footer。
-正如名字所说，SmartRefreshLayout是一个“聪明”或者“智能”的下拉刷新布局，由于它的“智能”，它不只是支持所有的View，还支持多层嵌套的视图结构。
-它继承自ViewGroup 而不是FrameLayout或LinearLayout，提高了性能。
-也吸取了现在流行的各种刷新布局的优点，包括谷歌官方的 [SwipeRefreshLayout](https://developer.android.com/reference/android/support/v4/widget/SwipeRefreshLayout.html)，
-其他第三方的 [Ultra-Pull-To-Refresh](https://github.com/liaohuqiu/android-Ultra-Pull-To-Refresh)、[TwinklingRefreshLayout](https://github.com/lcodecorex/TwinklingRefreshLayout) 。
-还集成了各种炫酷的 Header 和 Footer。
+CoordinatorLayout就是加强版FrameLayout，适合作为应用顶层的布局（必须是根部局），提供交互行为
+通过给子View设定Behavior可以实现他们的交互性为。Behavior能实现一系列的交互行为和布局变化，包括侧滑菜单、可滑动删除的UI元素、View之间跟随移动。
+常用支持滑动效果的子View有：比如RecyclerView，NestedScrollView、TabLayout等  切记ScrollView是无效的！
 
+AppBarLayout是一个vertical的LinearLayout，其子View应通过setScrollFlags(int)或者xmL中的app:layout_scrollFlags来提供他们的Behavior。
+具体的app:layout_scrollFlags有这么几个： scroll, exitUntilCollapsed, enterAlways, enterAlwaysCollapsed, snap
+他必须严格地是CoordinatorLayout的子View，不然他一点作用都发挥不出来。
+AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与AppBarLayout同属于CoordinatorLayout的子View,并列的关系，）,必须严格地通过在xml中指出其滑动Behavior来与AppBarLayout进行绑定。
+通常这样：app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
 ## 特点功能:
 
