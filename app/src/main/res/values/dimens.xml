@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="scale_fourHundred_fifty">450dp</dimen>
+    <dimen name="space_ten">10dp</dimen>
+    <dimen name="scale_eighty">80dp</dimen>
+    <dimen name="scale_forty">40dp</dimen>
+    <dimen name="h1">23sp</dimen>
+</resources>

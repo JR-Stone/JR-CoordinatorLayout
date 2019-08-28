@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">JR-View</string>
+    <string name="behavior">com.stone.view.AppBarBehavior</string>
+    <string name="content">一个神秘的网站</string>
+</resources>
