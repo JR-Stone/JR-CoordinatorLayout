@@ -54,6 +54,7 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
 
 ## 简单使用
 人生的第一次写文章呀！还不知道我这第一次会被谁给夺走...还请多多指教，手下留情，少喷少喷！废话不多说，咱们言归正传，其实这三个控件组合可以制作出很多炫酷的界面，不过今天主要分享一下以地图为背景手动滑动透明AppBar渐变的效果，和之前的老版（饿了么）APP运输中订单详情界面一样；先上代码和基本效果图
+
 ![](https://github.com/JR-Stone/img/blob/master/jr_view.png)
 
 #### 项目演示
