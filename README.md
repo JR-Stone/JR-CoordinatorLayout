@@ -36,9 +36,9 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
 
 <!--![支付宝红包](https://github.com/scwang90/MultiWaveHeader/blob/master/art/pay_alipay_red_packet.png?raw=true)-->
 
-<!--> 你也可以在支付宝中直接搜索 **553866294** 来获取红包。如果得到的是花呗红包，也不用失望。如果你经常使用信用卡的话那么使用花呗红包非常适合你，它也和信用卡一样先消费后还款，关键是每天都能扫红包省钱！-->
+<!--你也可以在支付宝中直接搜索 **553866294** 来获取红包。如果得到的是花呗红包，也不用失望。如果你经常使用信用卡的话那么使用花呗红包非常适合你，它也和信用卡一样先消费后还款，关键是每天都能扫红包省钱！-->
 
-## 传送门
+<!--传送门
 
  - [属性文档](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_property.md)
  - [常见问题](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_faq.md)
@@ -47,12 +47,12 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
  - [博客文章](https://segmentfault.com/a/1190000010066071)
  - [源码下载](https://github.com/scwang90/SmartRefreshLayout/releases)
  - [多点触摸](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_multitouch.md)
- - [自定义Header](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_custom.md)
+ - [自定义Header](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_custom.md)-->
 
 ## Demo
 [下载 APK-Demo](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/app-debug.apk)
 
-![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/png_apk_rqcode.png)
+![](https://github.com/JR-Stone/img/blob/master/jr_view.png)
 
 #### 项目演示
 |个人首页|微博列表|
