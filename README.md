@@ -50,7 +50,7 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
  - [自定义Header](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_custom.md)-->
 
 ## Demo
-[下载 APK-Demo](https://github.com/JR-Stone/img/tree/master/apk/app-coor.apk)
+[下载 APK-Demo](https://github.com/JR-Stone/img/blob/master/apk/app-coor.apk)
 
 ![](https://github.com/JR-Stone/img/blob/master/jr_view.png)
 
