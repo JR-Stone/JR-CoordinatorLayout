@@ -135,7 +135,7 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
         app:layout_anchorGravity="top|center" />
 </android.support.design.widget.CoordinatorLayout>
 ```
-### java代码 MianActivity.java
+#### java代码 MianActivity.java
 ```java
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.appBar)
@@ -179,6 +179,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+```
+#### 导入包
+```
+/*高德地图*/
+implementation 'com.amap.api:3dmap:latest.integration'
+/*注释*/
+implementation 'com.jakewharton:butterknife:8.7.0'
+annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 ```
 |默认|滑动中|置顶|
 |:---:|:---:|:---:|
