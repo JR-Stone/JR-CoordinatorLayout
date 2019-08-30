@@ -192,130 +192,6 @@ annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 |:---:|:---:|:---:|
 |![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view.png)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view1.png)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view2.png)|
 
-## 简单用例
-#### 1.在 build.gradle 中添加依赖
-
-[【V2.0.0】](https://github.com/scwang90/SmartRefreshLayout/tree/master#%E7%AE%80%E5%8D%95%E7%94%A8%E4%BE%8B) 版本已经在开发，主要是对各个功能类进行分包，比如不用二级刷新就不依赖，避免代码冗余，欢迎大家来体验
-
-```
-implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'  //1.0.5及以前版本的老用户升级需谨慎，API改动过大
-implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'  //没有使用特殊Header，可以不加这行
-
-```
-如果使用 AndroidX 在 gradle.properties 中添加
-
-```
-android.useAndroidX=true
-android.enableJetifier=true
-
-```
-
-#### 2.在XML布局文件中添加 SmartRefreshLayout
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/refreshLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:background="#fff" />
-</com.scwang.smartrefresh.layout.SmartRefreshLayout>
-```
-
-#### 3.在 Activity 或者 Fragment 中添加代码
-```java
-RefreshLayout refreshLayout = (RefreshLayout)findViewById(R.id.refreshLayout);
-refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-    @Override
-    public void onRefresh(RefreshLayout refreshlayout) {
-        refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
-    }
-});
-refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-    @Override
-    public void onLoadMore(RefreshLayout refreshlayout) {
-        refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
-    }
-});
-```
-
-## 使用指定的 Header 和 Footer
-
-#### 1.方法一 全局设置
-```java
-public class App extends Application {
-    //static 代码段可以防止内存泄露
-    static {
-        //设置全局的Header构建器
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
-                @Override
-                public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-                    layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);//全局设置主题颜色
-                    return new ClassicsHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
-                }
-            });
-        //设置全局的Footer构建器
-        SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
-                @Override
-                public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
-                    //指定为经典Footer，默认是 BallPulseFooter
-                    return new ClassicsFooter(context).setDrawableSize(20);
-                }
-            });
-    }
-}
-```
-
-注意：方法一 设置的Header和Footer的优先级是最低的，如果同时还使用了方法二、三，将会被其它方法取代
-
-
-#### 2.方法二 XML布局文件指定
-```xml
-<com.scwang.smartrefresh.layout.SmartRefreshLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/refreshLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#444444"
-    app:srlPrimaryColor="#444444"
-    app:srlAccentColor="@android:color/white"
-    app:srlEnablePreviewInEditMode="true">
-    <!--srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色-->
-    <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能-->
-    <com.scwang.smartrefresh.layout.header.ClassicsHeader
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/dimenPaddingCommon"
-        android:background="@android:color/white"
-        android:text="@string/description_define_in_xml"/>
-    <com.scwang.smartrefresh.layout.footer.ClassicsFooter
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</com.scwang.smartrefresh.layout.SmartRefreshLayout>
-```
-
-注意：方法二 XML设置的Header和Footer的优先级是中等的，会被方法三覆盖。而且使用本方法的时候，Android Studio 会有预览效果，如下图：
-
-![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/jpg_preview_xml_define.jpg)
-
-不过不用担心，只是预览效果，运行的时候只有下拉才会出现~
-
-#### 3.方法三 Java代码设置
-```java
-final RefreshLayout refreshLayout = (RefreshLayout) findViewById(R.id.refreshLayout);
-//设置 Header 为 贝塞尔雷达 样式
-refreshLayout.setRefreshHeader(new BezierRadarHeader(this).setEnableHorizontalDrag(true));
-//设置 Footer 为 球脉冲 样式
-refreshLayout.setRefreshFooter(new BallPulseFooter(this).setSpinnerStyle(SpinnerStyle.Scale));
-```
-
 #### 4.更多使用说明
 
  - [属性文档](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_property.md)
@@ -328,10 +204,10 @@ SmartRefreshLayout 没有使用到：序列化、反序列化、JNI、反射，�
 
 ## 赞赏
 
-如果你喜欢 SmartRefreshLayout 的设计，感觉 SmartRefreshLayout 帮助到了你，可以点右上角 "Star" 支持一下 谢谢！ ^_^
+如果你喜欢我的分享，感觉这篇文章帮助到了你，可以点右上角 "Star" 支持一下 谢谢！ ^_^
 你也还可以扫描下面的二维码~ 请作者喝一杯咖啡。
 
-![](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/pay_alipay.jpg?raw=true) ![](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/pay_wxpay.jpg?raw=true) ![](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/pay_tencent.jpg?raw=true)
+![](https://github.com/JR-Stone/img/blob/master/paycode/zfb.jpg) ![](https://github.com/JR-Stone/img/blob/master/paycode/wx.jpg)
 
 > 如果希望捐赠之后能获得相关的帮助，可以选择加入下面的付费群来取代普通捐赠，付费群可以直接获得作者的直接帮助，与问题反馈。
 
