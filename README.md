@@ -58,61 +58,87 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
 |默认|滑动中|置顶|
 |:---:|:---:|:---:|
 |![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view.png)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view1.png)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view2.png)|
-#### 项目演示
-|个人首页|微博列表|
-|:---:|:---:|
-|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_practive_weibo.gif)|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_practive_feedlist.gif)|
 
-|餐饮美食|个人中心|
-|:---:|:---:|
-|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_practive_repast.gif)|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_practive_profile.gif)|
+``` xml
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-#### 样式演示 Style
-|Delivery|DropBox|
-|:---:|:---:|
-|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_Delivery.gif)|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_Dropbox.gif)|
-|[Refresh-your-delivery](https://dribbble.com/shots/2753803-Refresh-your-delivery)|[Dropbox-Refresh](https://dribbble.com/shots/3470499-DropBox-Refresh)|
+    <com.amap.api.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-上面这两个是我自己实现的，下面的是我把github上其它优秀的Header进行的整理和集合还有优化：
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/scale_fourHundred_fifty"
+        app:elevation="0dp">
 
-|BezierRadar|BezierCircle|
-|:---:|:---:|
-|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_BezierRadar.gif)|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_BezierCircle.gif)|
-|[Pull To Refresh](https://dribbble.com/shots/1936194-Pull-To-Refresh)|[Pull Down To Refresh](https://dribbble.com/shots/1797373-Pull-Down-To-Refresh)|
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarStyle="insideInset"
+            app:collapsedTitleGravity="center"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-|FlyRefresh|Classics|
-|:---:|:---:|
-|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_FlyRefresh.gif)|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_Classics.gif)|
-|[FlyRefresh](https://github.com/race604/FlyRefresh)|[ClassicsHeader](#1)|
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll" />
 
-|Phoenix|Taurus|
-|:---:|:---:|
-|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_Phoenix.gif)|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_Taurus.gif)|
-|[Yalantis/Phoenix](https://github.com/Yalantis/Phoenix)|[Yalantis/Taurus](https://github.com/Yalantis/Taurus)
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
 
-|BattleCity|HitBlock|
-|:---:|:---:|
-|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_BattleCity.gif)|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_HitBlock.gif)|
-|[FunGame/BattleCity](https://github.com/Hitomis/FunGameRefresh)|[FunGame/HitBlock](https://github.com/Hitomis/FunGameRefresh)
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:elevation="2dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-|WaveSwipe|Material|
-|:---:|:---:|
-|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_WaveSwipe.gif)|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_Material.gif)|
-|[WaveSwipeRefreshLayout](https://github.com/recruit-lifestyle/WaveSwipeRefreshLayout)|[MaterialHeader](https://developer.android.com/reference/android/support/v4/widget/SwipeRefreshLayout.html)
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:paddingTop="@dimen/scale_eighty"
+            android:background="@color/white"
+            android:layout_height="match_parent">
 
-|StoreHouse|WaterDrop|
-|:---:|:---:|
-|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_StoreHouse.gif)|![](https://github.com/scwang90/SmartRefreshLayout/raw/master/art/gif_WaterDrop.gif)|
-|[CRefreshLayout](https://github.com/cloay/CRefreshLayout)|[WaterDrop](https://github.com/THEONE10211024/WaterDropListView)
+            <TextView
+                android:id="@+id/jumpUrl"
+                style="@style/defaultText"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:drawableBottom="@drawable/ic_touch_tag"
+                android:text="@string/content" />
 
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
-看到这么多炫酷的Header，是不是觉得很棒？这时你或许会担心这么多的Header集成在一起，但是平时只会用到一个，是不是要引入很多无用的代码和资源？
-请放心，我已经把刷新布局分成三个包啦，用到的时候自行引用就可以啦！
+    <TextView
+        android:id="@+id/loadingTime"
+        style="@style/Widget.Design.FloatingActionButton"
+        android:layout_width="@dimen/scale_eighty"
+        android:layout_height="@dimen/scale_eighty"
+        android:gravity="center"
+        android:textSize="@dimen/h1"
+        android:elevation="2dp"
+        android:textColor="@color/white"
+        android:text="JR"
+        app:layout_anchor="@id/nestScrollView"
+        app:layout_anchorGravity="top|center" />
+</android.support.design.widget.CoordinatorLayout>
 
- - SmartRefreshLayout 刷新布局核心实现，自带ClassicsHeader（经典）、BezierRadarHeader（贝塞尔雷达）两个 Header.
- - SmartRefreshHeader 各种Header的集成，除了Layout自带的Header，其它都在这个包中.
- - SmartRefreshFooter 各种Footer的集成，除了Layout自带的Footer，其它都在这个包中.
-
+```
 ## 简单用例
 #### 1.在 build.gradle 中添加依赖
 
