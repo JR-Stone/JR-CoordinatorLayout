@@ -10,8 +10,6 @@ CoordinatorLayout + AppBarLayout + NestedScrollView 组合使用实现地图背�
 <!-- [![Platform](https://img.shields.io/badge/Platform-Android-f0ad4e.svg)](https://www.android.com) -->
 <!-- [![Author](https://img.shields.io/badge/Author-scwang90-11bbff.svg)](https://github.com/scwang90) -->
 
-## [English](https://github.com/scwang90/SmartRefreshLayout/blob/master/README_EN.md) | 中文
-
 CoordinatorLayout就是加强版FrameLayout，适合作为应用顶层的布局（必须是根部局），提供交互行为
 通过给子View设定Behavior可以实现他们的交互性为。Behavior能实现一系列的交互行为和布局变化，包括侧滑菜单、可滑动删除的UI元素、View之间跟随移动。
 常用支持滑动效果的子View有：比如RecyclerView，NestedScrollView、TabLayout等  切记ScrollView是无效的！
@@ -201,7 +199,7 @@ annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 
 > 如果希望捐赠之后能获得相关的帮助，可以选择加入下面的交流群，在群里可以直接和作者进行交流，与问题反馈。
 如果在捐赠留言中备注名称，将会被记录到列表中~ 如果你也是github开源作者，捐赠时可以留下github项目地址或者个人主页地址，链接将会被添加到列表中起到互相推广的作用
-[捐赠列表](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_donationlist.md)
+[捐赠列表](https://github.com/JR-Stone/img/edit/master/payList.md)
 
 ![](https://github.com/JR-Stone/img/blob/master/qqflock/qq.png)
 #### 进群须知
