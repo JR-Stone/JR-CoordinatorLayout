@@ -192,16 +192,6 @@ annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 |:---:|:---:|:---:|
 |![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view.png)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view1.png)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view2.png)|
 
-#### 4.更多使用说明
-
- - [属性文档](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_property.md)
- - [常见问题](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_faq.md)
- - [自定义Header](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_custom.md)
-
-## 混淆
-
-SmartRefreshLayout 没有使用到：序列化、反序列化、JNI、反射，所以并不需要添加混淆过滤代码，并且已经混淆测试通过，如果你在项目的使用中混淆之后出现问题，请及时通知我。
-
 ## 赞赏
 
 如果你喜欢我的分享，感觉这篇文章帮助到了你，可以点右上角 "Star" 支持一下 谢谢！ ^_^
