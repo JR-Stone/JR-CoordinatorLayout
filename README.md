@@ -55,7 +55,7 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
 ## 简单使用
 人生的第一次写文章呀！还不知道我这第一次会被谁给夺走...还请多多指教，手下留情，少喷少喷！废话不多说，咱们言归正传，其实这三个控件组合可以制作出很多炫酷的界面，不过今天主要分享一下以地图为背景手动滑动透明AppBar渐变的效果，和之前的老版（饿了么）APP运输中订单详情界面一样；先上代码和基本效果图
 
-#### 1.layout布局
+#### layout布局activity_main.xml
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -135,7 +135,51 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
         app:layout_anchorGravity="top|center" />
 </android.support.design.widget.CoordinatorLayout>
 ```
+### java代码 MianActivity.java
+```java
+public class MainActivity extends AppCompatActivity {
+    @BindView(R.id.appBar)
+    AppBarLayout appBarLayout;
+    @BindView(R.id.nestScrollView)
+    NestedScrollView scrollView;
+    @BindView(R.id.mapView)
+    MapView mapView;
 
+    private CoordinatorLayout.LayoutParams layoutParams;
+    private AMap aMap;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        mapView.onCreate(savedInstanceState);
+        if (aMap == null) {
+            aMap = mapView.getMap();
+        }
+        layoutParams = (CoordinatorLayout.LayoutParams) scrollView.getLayoutParams();
+        layoutParams.setMargins(30, 0, 30, 0);
+        scrollView.setLayoutParams(layoutParams);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+                float a = (float) 30 / appBarLayout.getTotalScrollRange();
+                int side = (int) Math.rint(a * i + 30);
+                layoutParams.setMargins(side, 0, side, 0);
+                scrollView.setLayoutParams(layoutParams);
+                if (Math.abs(i) > 0) {
+                    float alpha = (float) Math.abs(i) / appBarLayout.getTotalScrollRange();
+                    appBarLayout.setAlpha(alpha);
+                    scrollView.getBackground().mutate().setAlpha(Math.round(alpha * 255));
+                } else {
+                    appBarLayout.setAlpha(0);
+                    scrollView.getBackground().mutate().setAlpha(0);
+                }
+            }
+        });
+    }
+}
+```
 |默认|滑动中|置顶|
 |:---:|:---:|:---:|
 |![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view.png)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view1.png)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view2.png)|
