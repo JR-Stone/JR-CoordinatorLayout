@@ -199,7 +199,7 @@ annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 
 > 如果希望捐赠之后能获得相关的帮助，可以选择加入下面的交流群，在群里可以直接和作者进行交流，与问题反馈。
 如果在捐赠留言中备注名称，将会被记录到列表中~ 如果你也是github开源作者，捐赠时可以留下github项目地址或者个人主页地址，链接将会被添加到列表中起到互相推广的作用
-[捐赠列表](https://github.com/JR-Stone/img/edit/master/payList.md)
+[捐赠列表](https://github.com/JR-Stone/img/blob/master/payList.md)
 
 ![](https://github.com/JR-Stone/img/blob/master/qqflock/qq.png)
 #### 进群须知
