@@ -323,6 +323,49 @@ public class AppBarBehavior extends AppBarLayout.Behavior{
     }
 }
 ```
+
+#### 4. 重写好AppBarLayout.Behavior类之后，在我们的项目中引用一下就好了；引用方法也很简单，在Strings.xml中添加
+```xml <string name="behavior">com.stone.view.AppBarBehavior</string>```
+#### 然后在布局中的AppBarLayout上进行引用
+```xml 
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/scale_fourHundred_fifty"
+        app:layout_behavior="@string/behavior"
+        app:elevation="0dp">
+     ...
+```
+
+#### 5. OK，引用好之后你会发现地图已经可以随意拖动了，到这里又有小伙伴发现怎么自己的FloatingActionButton(中间的圆圈)不能写文字呢？其实作者并不是直接用的android.support.design.widget.FloatingActionButton,而是利用TextView的style属性，看代码
+```xml 
+<TextView
+        android:id="@+id/loadingTime"
+        style="@style/Widget.Design.FloatingActionButton"
+        android:layout_width="@dimen/scale_eighty"
+        android:layout_height="@dimen/scale_eighty"
+        android:gravity="center"
+        android:textSize="@dimen/h1"
+        android:elevation="5dp"
+        android:textColor="@color/white"
+        android:text="JR"
+        app:layout_anchor="@id/nestScrollView"
+        app:layout_anchorGravity="top|center" />
+```
+#### 用这个TextView替代不居中的android.support.design.widget.FloatingActionButton大事搞定。关于界面的美化各位自行发挥，完整代码直接下载就可运行。
+
 ## 赞赏
 
 如果你喜欢我的分享，感觉这篇文章帮助到了你，可以点右上角 "Star" 支持一下 谢谢！ ^_^
