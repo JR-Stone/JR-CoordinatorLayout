@@ -35,7 +35,7 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
 [下载 APK-Demo](https://github.com/JR-Stone/img/blob/master/apk/app-coor.apk)
 
 ## 简单使用
-人生的第一次写文章呀！还不知道我这第一次会被谁给夺走...还请多多指教，手下留情，少喷少喷！废话不多说，咱们言归正传，其实这三个控件组合可以制作出很多炫酷的界面，不过今天主要分享一下以地图为背景手动滑动透明AppBar渐变的效果，和之前的老版（饿了么）APP运输中订单详情界面一样；先上代码和基本效果图
+人生的第一次写文章呀！还不知道我这第一次会被谁给夺走...还请多多指教，手下留情，少喷少喷！废话不多说，咱们言归正传，其实这三个控件组合可以制作出很多炫酷的界面，不过今天主要分享一下以地图为背景手动滑动透明AppBar渐变的效果，和之前的老版（饿了么）APP运输中订单详情界面一样；我们主要分享一下技术的难点，关于界面的布局及细节上的美化就留给各位开发者自己布局。先上代码和基本效果图
 
 #### layout布局activity_main.xml
 ``` xml
@@ -82,7 +82,6 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
         android:background="@color/white"
         android:fillViewport="true"
         android:scrollbars="none"
-        android:elevation="2dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -110,7 +109,6 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
         android:layout_height="@dimen/scale_eighty"
         android:gravity="center"
         android:textSize="@dimen/h1"
-        android:elevation="2dp"
         android:textColor="@color/white"
         android:text="JR"
         app:layout_anchor="@id/nestScrollView"
@@ -172,7 +170,10 @@ annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 ```
 |默认|滑动中|置顶|
 |:---:|:---:|:---:|
-|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view.png)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view1.png)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view2.png)|
+|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view.jpg)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view1.jpg)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view2.jpg)|
+
+#### 到此基本的效果已经出来了，如果把地图换成一站图片或者简单的布局那么现在已经可以支持了。但是如果是地图的话，那就有问题了；你会发现AppBarLayout透明部分触摸屏幕滑动地图会很困难，基本上一滑动下面的NestedScrollView就会跟着滑动而地图就不能操作了。看下图...
+![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view_map.jpg)
 
 ## 赞赏
 
