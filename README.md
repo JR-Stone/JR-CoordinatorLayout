@@ -28,24 +28,9 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
  - 支持回弹动画的插值器，实现各种炫酷的动画效果.
  - 支持设置主题来适配任何场景的 App，不会出现炫酷但很尴尬的情况.
 
-<!--## 每天领红包 -->
-
-<!--最近开通了支付宝商家，生成了个红包二维码，经常用支付宝的童鞋可有扫码领优惠红包，扫码只会拿红包，不会有任何损失，每天都可以扫码哦！-->
-
-<!--![支付宝红包](https://github.com/scwang90/MultiWaveHeader/blob/master/art/pay_alipay_red_packet.png?raw=true)-->
-
-<!--你也可以在支付宝中直接搜索 **553866294** 来获取红包。如果得到的是花呗红包，也不用失望。如果你经常使用信用卡的话那么使用花呗红包非常适合你，它也和信用卡一样先消费后还款，关键是每天都能扫红包省钱！-->
-
-<!--传送门
-
- - [属性文档](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_property.md)
- - [常见问题](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_faq.md)
- - [智能之处](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_smart.md)
- - [更新日志](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_update.md)
- - [博客文章](https://segmentfault.com/a/1190000010066071)
- - [源码下载](https://github.com/scwang90/SmartRefreshLayout/releases)
- - [多点触摸](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_multitouch.md)
- - [自定义Header](https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_custom.md)-->
+## 完整效果图
+|:---:|:---:|
+|![](https://github.com/JR-Stone/img/blob/master/coordinator/coor1.jpg)|![](https://github.com/JR-Stone/img/blob/master/coordinator/coor2.jpg)|
 
 ## Demo
 [下载 APK-Demo](https://github.com/JR-Stone/img/blob/master/apk/app-coor.apk)
