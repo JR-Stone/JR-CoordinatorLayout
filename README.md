@@ -37,7 +37,7 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
 ## 简单使用
 人生的第一次写文章呀！还不知道我这第一次会被谁给夺走...还请多多指教，手下留情，少喷少喷！废话不多说，咱们言归正传，其实这三个控件组合可以制作出很多炫酷的界面，不过今天主要分享一下以地图为背景手动滑动透明AppBar渐变的效果，和之前的老版（饿了么）APP运输中订单详情界面一样；我们主要分享一下技术的难点，关于界面的布局及细节上的美化就留给各位开发者自己布局。先上代码和基本效果图
 
-#### layout布局activity_main.xml
+#### 1. layout布局activity_main.xml
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -102,20 +102,15 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <TextView
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/loadingTime"
-        style="@style/Widget.Design.FloatingActionButton"
         android:layout_width="@dimen/scale_eighty"
         android:layout_height="@dimen/scale_eighty"
-        android:gravity="center"
-        android:textSize="@dimen/h1"
-        android:textColor="@color/white"
-        android:text="JR"
         app:layout_anchor="@id/nestScrollView"
-        app:layout_anchorGravity="top|center" />
+        app:layout_anchorGravity="top|center"/>
 </android.support.design.widget.CoordinatorLayout>
 ```
-#### java代码 MianActivity.java
+#### 2. java代码 MianActivity.java
 ```java
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.appBar)
@@ -160,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 ```
-#### 导入包
+#### 3. 导入包
 ```
 /*高德地图*/
 implementation 'com.amap.api:3dmap:latest.integration'
@@ -172,9 +167,162 @@ annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 |:---:|:---:|:---:|
 |![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view.jpg)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view1.jpg)|![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view2.jpg)|
 
-#### 到此基本的效果已经出来了，如果把地图换成一站图片或者简单的布局那么现在已经可以支持了。但是如果是地图的话，那就有问题了；你会发现AppBarLayout透明部分触摸屏幕滑动地图会很困难，基本上一滑动下面的NestedScrollView就会跟着滑动而地图就不能操作了。看下图...
+#### 4. 到此基本的效果已经出来了，如果把地图换成一站图片或者简单的布局那么现在已经可以支持了。但是如果是地图的话，那就有问题了；你会发现AppBarLayout透明部分触摸屏幕滑动地图会很困难，基本上一滑动下面的NestedScrollView就会跟着滑动而地图就不能操作了。看下图...
 ![](https://github.com/JR-Stone/img/blob/master/coordinator/jr_view_map.jpg)
 
+#### 那这个问题怎么解决呢？其实很简单，那就是重写AppBarLayout.Behavior,大家有时间也可以去研究研究behavior,CoordinatorLayout的很多酷炫的效果都是通过behavior来实现的。同样这里也是要重写AppBarLayout.Behavior中的onInterceptTouchEvent()方法,他的作用就是拦截触摸,其中有个boolean类型的返回值，true 表示不拦截，false表示拦截。默认为true,我们只需要返回false就OK了，就是这么简单。上代码（为了让大家更清楚的了解AppBarLayout.Behavior，我将其他主要方法也列了出来并备注了作用）
+```java
+/**
+ * @author jr
+ */
+public class AppBarBehavior extends AppBarLayout.Behavior{
+    public AppBarBehavior() {
+    }
+
+    public AppBarBehavior(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    /**
+     * AppBarLayout布局时调用
+     *
+     * @param parent 父布局CoordinatorLayout
+     * @param abl 使用此Behavior的AppBarLayout
+     * @param layoutDirection 布局方向
+     * @return 返回true表示子View重新布局，返回false表示请求默认布局
+     */
+    @Override
+    public boolean onLayoutChild(CoordinatorLayout parent, AppBarLayout abl, int layoutDirection) {
+        return super.onLayoutChild(parent, abl, layoutDirection);
+    }
+
+    /**
+     * 当CoordinatorLayout的子View尝试发起嵌套滚动时调用
+     *
+     * @param parent 父布局CoordinatorLayout
+     * @param child 使用此Behavior的AppBarLayout
+     * @param directTargetChild CoordinatorLayout的子View，或者是包含嵌套滚动操作的目标View
+     * @param target 发起嵌套滚动的目标View(即AppBarLayout下面的ScrollView或RecyclerView)
+     * @param nestedScrollAxes 嵌套滚动的方向
+     * @return 返回true表示接受滚动
+     */
+    @Override
+    public boolean onStartNestedScroll(CoordinatorLayout parent, AppBarLayout child, View directTargetChild, View target, int nestedScrollAxes, int type) {
+        return super.onStartNestedScroll(parent, child, directTargetChild, target, nestedScrollAxes, type);
+    }
+
+    /**
+     * 当嵌套滚动已由CoordinatorLayout接受时调用
+     *
+     * @param coordinatorLayout 父布局CoordinatorLayout
+     * @param child 使用此Behavior的AppBarLayout
+     * @param directTargetChild CoordinatorLayout的子View，或者是包含嵌套滚动操作的目标View
+     * @param target 发起嵌套滚动的目标View(即AppBarLayout下面的ScrollView或RecyclerView)
+     */
+    @Override
+    public void onNestedScrollAccepted(@NonNull CoordinatorLayout coordinatorLayout, @NonNull AppBarLayout child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
+        super.onNestedScrollAccepted(coordinatorLayout, child, directTargetChild, target, axes, type);
+    }
+
+    /**
+     * 当准备开始嵌套滚动时调用
+     *
+     * @param coordinatorLayout 父布局CoordinatorLayout
+     * @param child 使用此Behavior的AppBarLayout
+     * @param target 发起嵌套滚动的目标View(即AppBarLayout下面的ScrollView或RecyclerView)
+     * @param dx 用户在水平方向上滑动的像素数
+     * @param dy 用户在垂直方向上滑动的像素数
+     * @param consumed 输出参数，consumed[0]为水平方向应该消耗的距离，consumed[1]为垂直方向应该消耗的距离
+     */
+    @Override
+    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, int dx, int dy, int[] consumed, int type) {
+        super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed, type);
+    }
+
+    /**
+     * 嵌套滚动时调用
+     *
+     * @param coordinatorLayout 父布局CoordinatorLayout
+     * @param child 使用此Behavior的AppBarLayout
+     * @param target 发起嵌套滚动的目标View(即AppBarLayout下面的ScrollView或RecyclerView)
+     * @param dxConsumed 由目标View滚动操作消耗的水平像素数
+     * @param dyConsumed 由目标View滚动操作消耗的垂直像素数
+     * @param dxUnconsumed 由用户请求但是目标View滚动操作未消耗的水平像素数
+     * @param dyUnconsumed 由用户请求但是目标View滚动操作未消耗的垂直像素数
+     */
+    @Override
+    public void onNestedScroll(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
+        super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type);
+    }
+
+    /**
+     * 当嵌套滚动的子View准备快速滚动时调用
+     *
+     * @param coordinatorLayout 父布局CoordinatorLayout
+     * @param child 使用此Behavior的AppBarLayout
+     * @param target 发起嵌套滚动的目标View(即AppBarLayout下面的ScrollView或RecyclerView)
+     * @param velocityX 水平方向的速度
+     * @param velocityY 垂直方向的速度
+     * @return 如果Behavior消耗了快速滚动返回true
+     */
+    @Override
+    public boolean onNestedPreFling(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, float velocityX, float velocityY) {
+        return super.onNestedPreFling(coordinatorLayout, child, target, velocityX, velocityY);
+    }
+
+    /**
+     * 当嵌套滚动的子View快速滚动时调用
+     *
+     * @param coordinatorLayout 父布局CoordinatorLayout
+     * @param child 使用此Behavior的AppBarLayout
+     * @param target 发起嵌套滚动的目标View(即AppBarLayout下面的ScrollView或RecyclerView)
+     * @param velocityX 水平方向的速度
+     * @param velocityY 垂直方向的速度
+     * @param consumed 如果嵌套的子View消耗了快速滚动则为true
+     * @return 如果Behavior消耗了快速滚动返回true
+     */
+    @Override
+    public boolean onNestedFling(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, float velocityX, float velocityY, boolean consumed) {
+        return super.onNestedFling(coordinatorLayout, child, target, velocityX, velocityY, consumed);
+    }
+
+    /**
+     * 当触摸时调用
+     *
+     * @param parent 父布局CoordinatorLayout
+     * @param child 使用此Behavior的AppBarLayout
+     * @param ev 手势事件
+     */
+    @Override
+    public boolean onTouchEvent(CoordinatorLayout parent, AppBarLayout child, MotionEvent ev) {
+        return super.onTouchEvent(parent, child, ev);
+    }
+
+    /**
+     * 当触摸想要拦截时调用   关键所在 true 不拦截  false 拦截AppBarLayout的手势触摸
+     *
+     * @param parent 父布局CoordinatorLayout
+     * @param child 使用此Behavior的AppBarLayout
+     * @param ev 手势事件
+     */
+    @Override
+    public boolean onInterceptTouchEvent(CoordinatorLayout parent, AppBarLayout child, MotionEvent ev) {
+        return false;
+    }
+
+    /**
+     * 当定制滚动时调用
+     *
+     * @param coordinatorLayout 父布局CoordinatorLayout
+     * @param abl 使用此Behavior的AppBarLayout
+     * @param target 发起嵌套滚动的目标View(即AppBarLayout下面的ScrollView或RecyclerView)
+     */
+    @Override
+    public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, AppBarLayout abl, View target, int type) {
+        super.onStopNestedScroll(coordinatorLayout, abl, target, type);
+    }
+}
+```
 ## 赞赏
 
 如果你喜欢我的分享，感觉这篇文章帮助到了你，可以点右上角 "Star" 支持一下 谢谢！ ^_^
