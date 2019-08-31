@@ -29,7 +29,6 @@ AppBarLayout下方的滑动控件，比如RecyclerView，NestedScrollView（与A
  - 支持设置主题来适配任何场景的 App，不会出现炫酷但很尴尬的情况.
 
 ## 完整效果图
-|:---:|:---:|
 |![](https://github.com/JR-Stone/img/blob/master/coordinator/coor1.jpg)|![](https://github.com/JR-Stone/img/blob/master/coordinator/coor2.jpg)|
 
 ## Demo
