@@ -364,7 +364,7 @@ public class AppBarBehavior extends AppBarLayout.Behavior{
         app:layout_anchor="@id/nestScrollView"
         app:layout_anchorGravity="top|center" />
 ```
-#### 用这个TextView替代不居中的android.support.design.widget.FloatingActionButton大事搞定。关于界面的美化各位自行发挥，完整代码直接下载就可运行。
+#### 用这个TextView替代布局中的android.support.design.widget.FloatingActionButton大事搞定。关于界面的美化各位自行发挥，完整代码直接下载就可运行。
 
 ## 赞赏
 
