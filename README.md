@@ -379,7 +379,7 @@ public class AppBarBehavior extends AppBarLayout.Behavior{
 
 ![](https://github.com/JR-Stone/img/blob/master/qqflock/qq.png)
 #### 进群须知
-此群免费进入，大家可以相互讨论本库的相关使用和出现的问题，群主会很认真很努力的解决问题，但也不能保证能完美解决。
+加入此群，大家可以相互讨论本库的相关使用和出现的问题，群主会很认真很努力的解决问题，但也不能保证能完美解决。
 
 #### 友情链接
 [github/faith-hb/WidgetCase](https://github.com/faith-hb/WidgetCase)  
