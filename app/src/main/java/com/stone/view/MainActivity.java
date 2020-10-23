@@ -1,14 +1,14 @@
 package com.stone.view;
 
 import android.content.Intent;
-import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.MapView;
@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     NestedScrollView scrollView;
     @BindView(R.id.mapView)
     MapView mapView;
+    @BindView(R.id.coordinator)
+    CoordinatorLayout coordinator;
 
     private CoordinatorLayout.LayoutParams layoutParams;
     private AMap aMap;
@@ -66,11 +68,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.jumpUrl:
-                Intent intent = new Intent();
-                intent.setAction("android.intent.action.VIEW");
-                Uri content_url = Uri.parse("https://shop504682254.taobao.com/shop/view_shop.htm?tracelog=twddp&amp;user_number_id=2541121532");
-                intent.setData(content_url);
-                startActivity(intent);
+                startActivity(new Intent(this,Main2Activity.class));
                 break;
             default:
                 break;
