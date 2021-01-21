@@ -1,34 +1,24 @@
 package com.stone.view;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
+import android.widget.Toolbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.MapView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import com.google.android.material.appbar.AppBarLayout;
 
 /**
  * @author nnr
  */
-public class MainActivity extends AppCompatActivity {
-    @BindView(R.id.appBar)
+public class BehaviorActivity extends AppCompatActivity {
     AppBarLayout appBarLayout;
-    @BindView(R.id.nestScrollView)
     NestedScrollView scrollView;
-    @BindView(R.id.mapView)
     MapView mapView;
-    @BindView(R.id.coordinator)
-    CoordinatorLayout coordinator;
 
     private CoordinatorLayout.LayoutParams layoutParams;
     private AMap aMap;
@@ -36,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        setContentView(R.layout.activity_behavior);
+        appBarLayout = findViewById(R.id.appBar);
+        scrollView = findViewById(R.id.nestScrollView);
+        mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         if (aMap == null) {
             aMap = mapView.getMap();
@@ -62,17 +54,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    @OnClick({R.id.jumpUrl})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.jumpUrl:
-                startActivity(new Intent(this,Main2Activity.class));
-                break;
-            default:
-                break;
-        }
-
+        ((Toolbar)findViewById(R.id.toolbar)).setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

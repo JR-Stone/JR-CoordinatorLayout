@@ -1,118 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/coordinator"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".MainActivity">
 
-    <com.amap.api.maps.MapView
-        android:id="@+id/mapView"
+    <Button
+        android:onClick="behaviorIntent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/scale_fourHundred_fifty"
-        app:layout_behavior="@string/behavior"
-        app:elevation="0dp">
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsingLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbarStyle="insideInset"
-            app:collapsedTitleGravity="center"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <android.support.v7.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
-        <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nestScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:fillViewport="true"
-        android:scrollbars="none"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:paddingTop="@dimen/scale_eighty"
-            android:orientation="vertical"
-            android:background="@color/white"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/jumpUrl"
-                style="@style/defaultText"
-                android:gravity="center"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:drawableBottom="@drawable/ic_touch_tag"
-                android:text="@string/content" />
-
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字1"/>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:text="这是测试文字2"/>
-
-            <!--    ===-->
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字3"/>
-
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字4"/>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字5"/>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字6"/>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字7"/>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字8"/>
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-
-    <TextView
-        android:id="@+id/loadingTime"
-        style="@style/Widget.Design.FloatingActionButton"
-        android:layout_width="@dimen/scale_eighty"
-        android:layout_height="@dimen/scale_eighty"
         android:gravity="center"
-        app:layout_anchor="@id/nestScrollView"
-        app:layout_anchorGravity="top|center" />
-</android.support.design.widget.CoordinatorLayout>
+        android:padding="20dp"
+        android:text="仿饿了么地图界面"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:onClick="toolBarIntent"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="CoordinatorLayout + Toolbar 基本使用"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:onClick="transparentIntent"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="全屏状态栏透明，上滑toolbar渐变"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

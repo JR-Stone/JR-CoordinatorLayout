@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/coordinator"
+    tools:context=".BehaviorActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+    <com.amap.api.maps.MapView
+        android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/scale_fourHundred_fifty"
+        app:layout_behavior="@string/behavior"
         app:elevation="0dp">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="#00ffffff"
+            app:collapsedTitleGravity="center"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <ImageView
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:background="@mipmap/ic_launcher"
-                android:fitsSystemWindows="true"
-                android:scaleType="fitXY"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.7" />
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_back_black"
+                app:layout_scrollFlags="scroll" />
 
-        </android.support.design.widget.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    </android.support.design.widget.AppBarLayout>
-    <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
         android:id="@+id/nestScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,58 +65,55 @@
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字"/>
+                android:layout_height="100dp"
+                android:text="这是测试文字1"/>
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
-                android:text="这是测试文字"/>
+                android:text="这是测试文字2"/>
 
             <!--    ===-->
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字"/>
+                android:layout_height="100dp"
+                android:text="这是测试文字3"/>
 
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字"/>
+                android:layout_height="100dp"
+                android:text="这是测试文字4"/>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:text="这是测试文字5"/>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:text="这是测试文字6"/>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:text="这是测试文字7"/>
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="这是测试文字"/>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字"/>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字"/>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字"/>
+                android:text="这是测试文字8"/>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#ff0000"
+        android:id="@+id/loadingTime"
+        style="@style/Widget.Design.FloatingActionButton"
+        android:layout_width="@dimen/scale_eighty"
+        android:layout_height="@dimen/scale_eighty"
         android:gravity="center"
-        android:text="Hello World"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        app:layout_behavior="@string/behavior_sample_title" />
-
-</android.support.design.widget.CoordinatorLayout>
+        app:layout_anchor="@id/nestScrollView"
+        app:layout_anchorGravity="top|center" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

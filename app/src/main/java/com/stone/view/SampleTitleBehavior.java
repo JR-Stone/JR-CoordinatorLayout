@@ -1,12 +1,11 @@
 package com.stone.view;
 
 import android.content.Context;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
+
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 
 public class SampleTitleBehavior extends CoordinatorLayout.Behavior<View> {
     // 列表顶部和title底部重合时，列表的滑动距离。
