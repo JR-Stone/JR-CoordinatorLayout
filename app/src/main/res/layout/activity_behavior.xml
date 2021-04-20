@@ -2,9 +2,9 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/coordinator"
     tools:context=".BehaviorActivity">
 
     <com.amap.api.maps.MapView
@@ -16,8 +16,8 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/scale_fourHundred_fifty"
-        app:layout_behavior="@string/behavior"
-        app:elevation="0dp">
+        app:elevation="0dp"
+        app:layout_behavior="@string/behavior">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingLayout"
@@ -31,13 +31,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_back_black"
-                app:layout_scrollFlags="scroll" />
+                app:layout_scrollFlags="scroll"
+                app:navigationIcon="@drawable/ic_back_black" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.core.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/nestScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,63 +48,62 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:paddingTop="@dimen/scale_eighty"
-            android:orientation="vertical"
+            android:layout_height="match_parent"
             android:background="@color/white"
-            android:layout_height="match_parent">
+            android:orientation="vertical"
+            android:paddingTop="@dimen/scale_eighty">
 
             <TextView
                 android:id="@+id/jumpUrl"
                 style="@style/defaultText"
-                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:drawableBottom="@drawable/ic_touch_tag"
+                android:gravity="center"
                 android:text="@string/content" />
 
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:text="这是测试文字1"/>
-            <TextView
+             <TextView
+                 android:layout_marginTop="20dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="100dp"
+                 android:text="这是测试文字1"/>
+            <!--<TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:text="这是测试文字2"/>
 
-            <!--    ===-->
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:text="这是测试文字3"/>
+           <TextView
+               android:layout_marginTop="20dp"
+               android:layout_width="wrap_content"
+               android:layout_height="100dp"
+               android:text="这是测试文字3"/>
 
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:text="这是测试文字4"/>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:text="这是测试文字5"/>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:text="这是测试文字6"/>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:text="这是测试文字7"/>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="这是测试文字8"/>
+           <TextView
+               android:layout_marginTop="20dp"
+               android:layout_width="wrap_content"
+               android:layout_height="100dp"
+               android:text="这是测试文字4"/>
+           <TextView
+               android:layout_marginTop="20dp"
+               android:layout_width="wrap_content"
+               android:layout_height="100dp"
+               android:text="这是测试文字5"/>
+           <TextView
+               android:layout_marginTop="20dp"
+               android:layout_width="wrap_content"
+               android:layout_height="100dp"
+               android:text="这是测试文字6"/>
+           <TextView
+               android:layout_marginTop="20dp"
+               android:layout_width="wrap_content"
+               android:layout_height="100dp"
+               android:text="这是测试文字7"/>
+           <TextView
+               android:layout_marginTop="20dp"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="这是测试文字8"/>-->
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
